@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ app.get(('/health'), (req, res) => {
 })
 
 
-app.use("/api/v1/", );
+app.use("/api/v1/", userRoutes);
 
 //starting server
 const startServer = async() => {
