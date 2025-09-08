@@ -4,31 +4,36 @@ import Tags from "./tags";
 
 interface IContent extends Document{
     link: string, 
-    type: string 
+    photourl: string 
     title: string, 
-    tages: any,
+    note: string,
+    tags: any,
     userId: any,
     createdAt: Date,
+    
 }
 
 
 const ContentSchema: Schema<IContent> = new mongoose.Schema({
     link: {
         type: String,
-        required: true
     },
-    type: {
-        type: String,
-        required:true,
-        default: "No-type"
+    photourl: {
+        type: String
     },
     title: {
         type: String,
         default: "No-title"
     },
-    tages: {type: mongoose.Schema.Types.ObjectId, ref: "Tags"},
+    note: {
+        type: String
+    },
+    tags: [{type: mongoose.Schema.Types.ObjectId, ref: "Tags"}],
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
-    createdAt: Date()
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 const Content: Model<IContent> = mongoose.model<IContent>("Content", ContentSchema);
